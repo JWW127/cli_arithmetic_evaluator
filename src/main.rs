@@ -1,3 +1,9 @@
+use parsemath::tokenizer::Tokenizer;
+
+mod parsemath;
+
 fn main() {
-    println!("Hello, world!");
+    //do something
+    let my_token = Tokenizer::new("taco");
+    println!("{:?}", my_token);
 }
