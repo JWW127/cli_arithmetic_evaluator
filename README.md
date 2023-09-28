@@ -7,7 +7,7 @@ depths of Rust's core concepts like scanning, lexing, parsing, and other fundeme
 behind compiler design. If you are using this as a learning experience as I am
 you will find I have commented extensively.
 <br/>
-You can learn more about systems programming in rust including the code I used here via _Practical Systems Programming for Rust Developers_ .
+You can learn more about systems programming in rust including the code I used here via <br/> _Practical Systems Programming for Rust Developers_ .
 
 ## Project Requirements
 
