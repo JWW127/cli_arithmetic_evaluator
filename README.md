@@ -1,6 +1,13 @@
 # CLI Arithmetic Evaluator
 
-Appears to be a calculator, but is in fact a way for me to test the depths of Rust's core concepts like scanning, lexing, parsing, and other fundementals behind compiler design.
+### What?
+
+Appears to be a calculator, but is in fact a way for me to test and learn the
+depths of Rust's core concepts like scanning, lexing, parsing, and other fundementals
+behind compiler design. If you are using this as a learning experience as I am
+you will find I have commented extensively.
+<br/>
+You can learn more about systems programming in rust including the code I used here via _Practical Systems Programming for Rust Developers_ .
 
 ## Project Requirements
 
