@@ -9,6 +9,8 @@ Appears to be a calculator, but is in fact a way for me to test the depths of Ru
 - invalid input should return error message
 - handle edge cases like empty "()"
 
+##### Flowchart
+
 ```mermaid
 flowchart TD
     User-Input --> Scanner;
@@ -17,8 +19,6 @@ flowchart TD
     Parser --> Evaluator;
     Evaluator --> User-Input;
 ```
-
-##### Flowchart
 
 1. User-Input - user can enter arithmetic expression (no spaces) into CLI
 2. Scanner - read the expression

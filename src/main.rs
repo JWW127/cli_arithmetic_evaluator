@@ -1,9 +1,42 @@
-use parsemath::tokenizer::Tokenizer;
+use std::io;
 
+// code for arithmetic expression evaluation is in parsemath module
 mod parsemath;
+use parsemath::ast;
+use parsemath::parser::{ParseError, Parser};
+
+// Function to invoke Parser and evaluate expression
+fn evaluate(expr: String) -> Result<f64, ParseError> {
+    let expr = expr.split_whitespace().collect::<String>(); // remove whitespace chars
+    let mut math_parser = Parser::new(&expr)?;
+    let ast = math_parser.parse()?;
+    println!("You requested {:?}", ast);
+
+    Ok(ast::eval(ast)?)
+}
+
+// Main function reads aritnmetic expression from command-line and displays result and error.
+// It calls the evaluate function to perform computation.
 
 fn main() {
-    //do something
-    let my_token = Tokenizer::new("taco");
-    println!("{:?}", my_token);
+    println!("This is a Arithmetic Expression Evaluator (AEE).");
+    println!("AEE can calculate value for expression such as 5*3+(4-6)+2^3/6. ");
+    println!("Allowed numbers types: positive, negative and decimals.");
+    println!("Allowed operations: Add, Subtract, Multiply, Divide, PowerOf(^). ");
+    println!("Enter your arithmetic expression below:");
+    loop {
+        let mut input = String::new();
+        match io::stdin().read_line(&mut input) {
+            Ok(_) => {
+                match evaluate(input) {
+                    Ok(val) => println!("Answer {}\n", val),
+                    Err(_) => {
+                        println!("Error in evaluating expression. Please enter valid expression\n");
+                    }
+                };
+            }
+
+            Err(error) => println!("error: {}", error),
+        }
+    }
 }

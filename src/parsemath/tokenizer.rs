@@ -5,6 +5,7 @@ use std::str::Chars;
 // peekable lets us peek at the next char
 #[derive(Debug)]
 pub struct Tokenizer<'a> {
+    // expr is a field of chars that have optional refrence to next ele
     expr: Peekable<Chars<'a>>,
 }
 
@@ -24,18 +25,24 @@ impl<'a> Iterator for Tokenizer<'a> {
 
         match next_char {
             Some('0'..='9') => {
+                // stringify next_char(int) into the variable number(string)
                 let mut number = next_char?.to_string();
 
-                while let Some(next_char) = self.expr.peek() {
-                    if next_char.is_numeric() || next_char == &'.' {
+                // while self.expr.peek() == Some(char) pass that char into
+                while let Some(extracted_next_char) = self.expr.peek() {
+                    // check if extracted char is a numeric or a decimal
+                    if extracted_next_char.is_numeric() || extracted_next_char == &'.' {
+                        // push the extracted char to number
                         number.push(self.expr.next()?);
-                    } else if next_char == &'(' {
+                    // if & or ( return a None
+                    } else if extracted_next_char == &'(' {
                         return None;
                     } else {
                         break;
                     }
                 }
 
+                // returns our completed number variable parsed into a f64
                 Some(Token::Num(number.parse::<f64>().unwrap()))
             }
             Some('+') => Some(Token::Add),
